@@ -10,6 +10,6 @@ s.author       = { "Yu Ping" => "290180695@qq.com" }
 s.platform     = :ios, "7.0"
 s.ios.deployment_target = "7.0"
 s.source       = { :git => "https://github.com/yuping1989/YPCategory.git", :tag => s.version}
-s.source_files  = 'YPCategory/YPCategory/*.{h,m}'
+s.source_files  = 'YPCategory/YPCategory/**/*'
 s.requires_arc = true
 end

@@ -162,10 +162,10 @@
 		7EC50196204ED001008AC02D /* YPCategory */ = {
 			isa = PBXGroup;
 			children = (
+				7EC501D8204ED001008AC02D /* YPCategory.h */,
 				7EC50197204ED001008AC02D /* Foundation */,
 				7EC501B4204ED001008AC02D /* Other */,
 				7EC501B7204ED001008AC02D /* UIKit */,
-				7EC501D8204ED001008AC02D /* YPCategory.h */,
 			);
 			path = YPCategory;
 			sourceTree = "<group>";

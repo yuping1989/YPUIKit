@@ -109,8 +109,8 @@
     return (info.kp_proc.p_flag & P_TRACED) ? YES : NO;
 }
 
-+ (AppDelegate *)appDelegate {
-    return (AppDelegate *)[UIApplication sharedApplication].delegate;
++ (id<UIApplicationDelegate>)appDelegate {
+    return [UIApplication sharedApplication].delegate;
 }
 
 + (void)hideKeyboard {
