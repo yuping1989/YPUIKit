@@ -30,7 +30,7 @@
 }
 
 - (void)hideInputAssistantItem {
-    if ([self respondsToSelector:@selector(inputAssistantItem)]) {
+    if (@available(iOS 9.0, *)) {
         UITextInputAssistantItem *inputAssistantItem = [self inputAssistantItem];
         inputAssistantItem.leadingBarButtonGroups = @[];
         inputAssistantItem.trailingBarButtonGroups = @[];
@@ -38,8 +38,9 @@
 }
 
 - (void)setPlaceholder:(NSString *)placeholder withColor:(UIColor *)color {
-    assert(placeholder);
-    assert(color);
+    if (!placeholder || !color) {
+        return;
+    }
     self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder
                                                                  attributes:@{NSForegroundColorAttributeName : color}];
 }

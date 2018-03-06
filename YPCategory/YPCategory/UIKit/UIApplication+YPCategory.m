@@ -124,7 +124,7 @@
 + (void)openURLString:(NSString *)URLString {
     NSURL *url = [NSURL URLWithString:URLString];
     UIApplication *application = [UIApplication sharedApplication];
-    if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+    if (@available(iOS 10.0, *)) {
         [application openURL:url options:@{} completionHandler:nil];
     } else {
 #pragma clang diagnostic push
