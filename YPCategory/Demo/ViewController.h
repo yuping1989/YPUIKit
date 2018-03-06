@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YPCategory.h"
 
 @interface ViewController : UIViewController
 
