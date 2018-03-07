@@ -109,7 +109,7 @@
     return (info.kp_proc.p_flag & P_TRACED) ? YES : NO;
 }
 
-+ (id<UIApplicationDelegate>)appDelegate {
++ (id)appDelegate {
     return [UIApplication sharedApplication].delegate;
 }
 

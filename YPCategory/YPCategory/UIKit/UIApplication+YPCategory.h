@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  返回AppDelegate对象
  */
-+ (id<UIApplicationDelegate>)appDelegate;
++ (id)appDelegate;
 
 + (void)hideKeyboard;
 
