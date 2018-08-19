@@ -21,7 +21,6 @@
     [window hideProgress];
 }
 
-
 #pragma mark - ProgressHUD
 
 - (MBProgressHUD *)progressHUD {
