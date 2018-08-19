@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58D7B1C6685F98C1FE3D6C20 /* libPods-YPUIKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91578D450D08B1C0C30C71A3 /* libPods-YPUIKit.a */; };
+		7E1C9F652129B4730069DC46 /* UIView+YPProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C9F642129B4730069DC46 /* UIView+YPProgress.m */; };
+		7E1C9F682129B6340069DC46 /* UIView+YPToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C9F672129B6340069DC46 /* UIView+YPToast.m */; };
 		7ED6753A20A96C01003034C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6753020A96C01003034C2 /* Assets.xcassets */; };
 		7ED6753B20A96C01003034C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6753120A96C01003034C2 /* ViewController.m */; };
 		7ED6753C20A96C01003034C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6753220A96C01003034C2 /* LaunchScreen.storyboard */; };
@@ -24,6 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77A6A9CD924B0FB52221302D /* Pods-YPUIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPUIKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-YPUIKit/Pods-YPUIKit.release.xcconfig"; sourceTree = "<group>"; };
+		7E1C9F632129B4730069DC46 /* UIView+YPProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YPProgress.h"; sourceTree = "<group>"; };
+		7E1C9F642129B4730069DC46 /* UIView+YPProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YPProgress.m"; sourceTree = "<group>"; };
+		7E1C9F662129B6340069DC46 /* UIView+YPToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+YPToast.h"; sourceTree = "<group>"; };
+		7E1C9F672129B6340069DC46 /* UIView+YPToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+YPToast.m"; sourceTree = "<group>"; };
 		7ED6751420A96A90003034C2 /* YPUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED6752F20A96C01003034C2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7ED6753020A96C01003034C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +58,8 @@
 		7ED6755320A96CA3003034C2 /* YPCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPCheckBox.h; sourceTree = "<group>"; };
 		7ED6755520A96CA3003034C2 /* YPTagCloudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPTagCloudView.h; sourceTree = "<group>"; };
 		7ED6755620A96CA3003034C2 /* YPTagCloudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPTagCloudView.m; sourceTree = "<group>"; };
+		91578D450D08B1C0C30C71A3 /* libPods-YPUIKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPUIKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDD6EDAAE765723B130594CD /* Pods-YPUIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPUIKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YPUIKit/Pods-YPUIKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,18 +67,49 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58D7B1C6685F98C1FE3D6C20 /* libPods-YPUIKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5110072E4EC525874F992103 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CDD6EDAAE765723B130594CD /* Pods-YPUIKit.debug.xcconfig */,
+				77A6A9CD924B0FB52221302D /* Pods-YPUIKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		767284C8F720248EC5F5CA7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91578D450D08B1C0C30C71A3 /* libPods-YPUIKit.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E1C9F622129B4520069DC46 /* YPToast */ = {
+			isa = PBXGroup;
+			children = (
+				7E1C9F632129B4730069DC46 /* UIView+YPProgress.h */,
+				7E1C9F642129B4730069DC46 /* UIView+YPProgress.m */,
+				7E1C9F662129B6340069DC46 /* UIView+YPToast.h */,
+				7E1C9F672129B6340069DC46 /* UIView+YPToast.m */,
+			);
+			path = YPToast;
+			sourceTree = "<group>";
+		};
 		7ED6750B20A96A90003034C2 = {
 			isa = PBXGroup;
 			children = (
 				7ED6752D20A96C01003034C2 /* YPUIKit */,
 				7ED6752E20A96C01003034C2 /* Demo */,
 				7ED6751520A96A90003034C2 /* Products */,
+				5110072E4EC525874F992103 /* Pods */,
+				767284C8F720248EC5F5CA7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +124,7 @@
 		7ED6752D20A96C01003034C2 /* YPUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				7E1C9F622129B4520069DC46 /* YPToast */,
 				7ED6754120A96CA3003034C2 /* YPBaseUpwardsView */,
 				7ED6755120A96CA3003034C2 /* YPCheckBox */,
 				7ED6754920A96CA3003034C2 /* YPControl */,
@@ -174,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7ED6752A20A96A92003034C2 /* Build configuration list for PBXNativeTarget "YPUIKit" */;
 			buildPhases = (
+				F2F0DE696562C40B1CC9DBA0 /* [CP] Check Pods Manifest.lock */,
 				7ED6751020A96A90003034C2 /* Sources */,
 				7ED6751120A96A90003034C2 /* Frameworks */,
 				7ED6751220A96A90003034C2 /* Resources */,
+				F960CA5BBF4566DDC0C39F40 /* [CP] Embed Pods Frameworks */,
+				FCED49E945CD6F9F2F0951E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,11 +243,12 @@
 				TargetAttributes = {
 					7ED6751320A96A90003034C2 = {
 						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 7ED6750F20A96A90003034C2 /* Build configuration list for PBXProject "YPUIKit" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -232,6 +278,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F2F0DE696562C40B1CC9DBA0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YPUIKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F960CA5BBF4566DDC0C39F40 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YPUIKit/Pods-YPUIKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCED49E945CD6F9F2F0951E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YPUIKit/Pods-YPUIKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7ED6751020A96A90003034C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -241,9 +338,11 @@
 				7ED6755D20A96CA3003034C2 /* YPCheckBox.m in Sources */,
 				7ED6755E20A96CA3003034C2 /* YPTagCloudView.m in Sources */,
 				7ED6755A20A96CA3003034C2 /* YPControl.m in Sources */,
+				7E1C9F652129B4730069DC46 /* UIView+YPProgress.m in Sources */,
 				7ED6755920A96CA3003034C2 /* YPTextView.m in Sources */,
 				7ED6753E20A96C01003034C2 /* main.m in Sources */,
 				7ED6753B20A96C01003034C2 /* ViewController.m in Sources */,
+				7E1C9F682129B6340069DC46 /* UIView+YPToast.m in Sources */,
 				7ED6753F20A96C01003034C2 /* AppDelegate.m in Sources */,
 				7ED6755720A96CA3003034C2 /* YPBaseUpwardsView.m in Sources */,
 				7ED6755C20A96CA3003034C2 /* YPPageViewCell.m in Sources */,
@@ -385,15 +484,13 @@
 		};
 		7ED6752B20A96A92003034C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDD6EDAAE765723B130594CD /* Pods-YPUIKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U259566QKD;
 				INFOPLIST_FILE = Demo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yp.YPUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -402,15 +499,13 @@
 		};
 		7ED6752C20A96A92003034C2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77A6A9CD924B0FB52221302D /* Pods-YPUIKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U259566QKD;
 				INFOPLIST_FILE = Demo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yp.YPUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
