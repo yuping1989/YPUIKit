@@ -29,9 +29,10 @@
            inView:(UIView *)view
    hideAfterDelay:(NSTimeInterval)delay {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    
-    // Configure for text only and offset down
     hud.mode = MBProgressHUDModeText;
+    hud.bezelView.color = [UIColor blackColor];
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.label.textColor = [UIColor whiteColor];
     hud.label.text = text;
     hud.margin = 10.f;
     hud.center = view.center;

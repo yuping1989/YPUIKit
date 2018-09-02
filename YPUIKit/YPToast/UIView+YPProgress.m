@@ -43,9 +43,12 @@
 - (void)showProgressOnView:(UIView *)view text:(NSString *)text userInteractionEnabled:(BOOL)enabled {
     if (!self.progressHUD) {
         self.progressHUD = [[MBProgressHUD alloc] initWithView:view];
-        [view addSubview:self.progressHUD];
+        self.progressHUD.bezelView.color = [UIColor blackColor];
+        self.progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        self.progressHUD.label.textColor = [UIColor whiteColor];
         self.progressHUD.delegate = self;
         [self.progressHUD showAnimated:YES];
+        [view addSubview:self.progressHUD];
     }
     self.progressHUD.label.text = text;
     self.progressHUD.userInteractionEnabled = enabled;
