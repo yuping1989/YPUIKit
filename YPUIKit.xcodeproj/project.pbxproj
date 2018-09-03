@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		58D7B1C6685F98C1FE3D6C20 /* libPods-YPUIKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91578D450D08B1C0C30C71A3 /* libPods-YPUIKit.a */; };
 		7E1C9F652129B4730069DC46 /* UIView+YPProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C9F642129B4730069DC46 /* UIView+YPProgress.m */; };
-		7E1C9F682129B6340069DC46 /* UIView+YPToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C9F672129B6340069DC46 /* UIView+YPToast.m */; };
 		7ED6753A20A96C01003034C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6753020A96C01003034C2 /* Assets.xcassets */; };
 		7ED6753B20A96C01003034C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6753120A96C01003034C2 /* ViewController.m */; };
 		7ED6753C20A96C01003034C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6753220A96C01003034C2 /* LaunchScreen.storyboard */; };
@@ -30,8 +29,6 @@
 		77A6A9CD924B0FB52221302D /* Pods-YPUIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPUIKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-YPUIKit/Pods-YPUIKit.release.xcconfig"; sourceTree = "<group>"; };
 		7E1C9F632129B4730069DC46 /* UIView+YPProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YPProgress.h"; sourceTree = "<group>"; };
 		7E1C9F642129B4730069DC46 /* UIView+YPProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YPProgress.m"; sourceTree = "<group>"; };
-		7E1C9F662129B6340069DC46 /* UIView+YPToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+YPToast.h"; sourceTree = "<group>"; };
-		7E1C9F672129B6340069DC46 /* UIView+YPToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+YPToast.m"; sourceTree = "<group>"; };
 		7ED6751420A96A90003034C2 /* YPUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED6752F20A96C01003034C2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7ED6753020A96C01003034C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,15 +88,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7E1C9F622129B4520069DC46 /* YPToast */ = {
+		7E1C9F622129B4520069DC46 /* YPProgress */ = {
 			isa = PBXGroup;
 			children = (
 				7E1C9F632129B4730069DC46 /* UIView+YPProgress.h */,
 				7E1C9F642129B4730069DC46 /* UIView+YPProgress.m */,
-				7E1C9F662129B6340069DC46 /* UIView+YPToast.h */,
-				7E1C9F672129B6340069DC46 /* UIView+YPToast.m */,
 			);
-			path = YPToast;
+			path = YPProgress;
 			sourceTree = "<group>";
 		};
 		7ED6750B20A96A90003034C2 = {
@@ -124,7 +119,7 @@
 		7ED6752D20A96C01003034C2 /* YPUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				7E1C9F622129B4520069DC46 /* YPToast */,
+				7E1C9F622129B4520069DC46 /* YPProgress */,
 				7ED6754120A96CA3003034C2 /* YPBaseUpwardsView */,
 				7ED6755120A96CA3003034C2 /* YPCheckBox */,
 				7ED6754920A96CA3003034C2 /* YPControl */,
@@ -342,7 +337,6 @@
 				7ED6755920A96CA3003034C2 /* YPTextView.m in Sources */,
 				7ED6753E20A96C01003034C2 /* main.m in Sources */,
 				7ED6753B20A96C01003034C2 /* ViewController.m in Sources */,
-				7E1C9F682129B6340069DC46 /* UIView+YPToast.m in Sources */,
 				7ED6753F20A96C01003034C2 /* AppDelegate.m in Sources */,
 				7ED6755720A96CA3003034C2 /* YPBaseUpwardsView.m in Sources */,
 				7ED6755C20A96CA3003034C2 /* YPPageViewCell.m in Sources */,

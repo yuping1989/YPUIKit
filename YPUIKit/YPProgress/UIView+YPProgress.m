@@ -43,8 +43,9 @@
 - (void)showProgressOnView:(UIView *)view text:(NSString *)text userInteractionEnabled:(BOOL)enabled {
     if (!self.progressHUD) {
         self.progressHUD = [[MBProgressHUD alloc] initWithView:view];
-        self.progressHUD.bezelView.color = [UIColor blackColor];
+        self.progressHUD.bezelView.color = [UIColor colorWithWhite:0.15f alpha:1];
         self.progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        self.progressHUD.contentColor = [UIColor whiteColor];
         self.progressHUD.label.textColor = [UIColor whiteColor];
         self.progressHUD.delegate = self;
         [self.progressHUD showAnimated:YES];
@@ -70,6 +71,36 @@
         return;
     }
     [self.progressHUD hideAnimated:YES];
+}
+
++ (void)showToast:(NSString *)text {
+    [UIView showToast:text hideAfterDelay:1.5f];
+}
+
++ (void)showToastOnAppWindow:(NSString *)text {
+    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
+    [UIView showToast:text inView:window hideAfterDelay:1.5f];
+}
+
++ (void)showToast:(NSString *)text hideAfterDelay:(NSTimeInterval)delay {
+    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    [UIView showToast:text inView:window hideAfterDelay:delay];
+}
+
++ (void)showToast:(NSString *)text
+           inView:(UIView *)view
+   hideAfterDelay:(NSTimeInterval)delay {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.bezelView.color = [UIColor colorWithWhite:0.15f alpha:1];
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.contentColor = [UIColor whiteColor];
+    hud.label.text = text;
+    hud.margin = 10.f;
+    hud.center = view.center;
+    hud.removeFromSuperViewOnHide = YES;
+    hud.userInteractionEnabled = NO;
+    [hud hideAnimated:YES afterDelay:delay];
 }
 
 @end
