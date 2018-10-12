@@ -12,12 +12,12 @@
 @implementation UIView (YPProgress)
 
 + (void)showProgressOnWindowWithText:(NSString *)text {
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
     [window showProgressOnView:window text:text userInteractionEnabled:YES];
 }
 
 + (void)hideProgress {
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
     [window hideProgress];
 }
 
@@ -36,7 +36,7 @@
 }
 
 - (void)showProgressOnWindowWithText:(NSString *)text {
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
     [self showProgressOnView:window text:text userInteractionEnabled:YES];
 }
 
