@@ -11,6 +11,10 @@
 
 @implementation UIView (YPProgress)
 
++ (void)showProgressOnWindow {
+    [self showProgressOnWindowWithText:nil];
+}
+
 + (void)showProgressOnWindowWithText:(NSString *)text {
     UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
     [window showProgressOnView:window text:text userInteractionEnabled:YES];
@@ -23,12 +27,8 @@
 
 #pragma mark - ProgressHUD
 
-- (MBProgressHUD *)progressHUD {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
-- (void)setProgressHUD:(MBProgressHUD *)progressHUD {
-    objc_setAssociatedObject(self, @selector(progressHUD), progressHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)showProgress {
+    [self showProgressWithText:nil];
 }
 
 - (void)showProgressWithText:(NSString *)text {
@@ -55,6 +55,14 @@
     self.progressHUD.userInteractionEnabled = enabled;
     
     NSLog(@"show progress");
+}
+
+- (MBProgressHUD *)progressHUD {
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setProgressHUD:(MBProgressHUD *)progressHUD {
+    objc_setAssociatedObject(self, @selector(progressHUD), progressHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {

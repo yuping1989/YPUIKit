@@ -11,12 +11,14 @@
 
 @interface UIView (YPProgress) <MBProgressHUDDelegate>
 
++ (void)showProgressOnWindow;
 + (void)showProgressOnWindowWithText:(NSString *)text;
 + (void)hideProgress;
 
 /**
  *  显示等待提示框
  */
+- (void)showProgress;
 - (void)showProgressWithText:(NSString *)text;
 - (void)showProgressOnWindowWithText:(NSString *)text;
 - (void)showProgressOnView:(UIView *)view text:(NSString *)text userInteractionEnabled:(BOOL)enabled;

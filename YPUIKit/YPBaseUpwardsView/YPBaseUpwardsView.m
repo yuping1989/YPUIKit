@@ -38,7 +38,7 @@
     [UIView animateWithDuration:0.25f animations:^{
         self.backgroundView.alpha = 0.3f;
         CGRect frame = self.frame;
-        frame.origin.y = view.frame.size.width - frame.size.height;
+        frame.origin.y = view.frame.size.height - frame.size.height;
         self.frame = frame;
     }];
 }
