@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
 	s.subspec 'All' do |all|
 		all.source_files  = 'YPUIKit/**/*.{h,m}'
-		all.dependency 'MBProgressHUD', '1.1.0'
+		all.dependency 'MBProgressHUD'
 		all.dependency 'Masonry'
 	end
 
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
 
 	s.subspec 'YPProgress' do |progress|
 		progress.source_files = 'YPUIKit/YPProgress/**/*.{h,m}'
-		progress.dependency 'MBProgressHUD', '1.1.0'
+		progress.dependency 'MBProgressHUD'
 	end
 
 	s.subspec 'YPBaseUpwardsView' do |buv|
