@@ -29,9 +29,12 @@
 
 @property(nonatomic, weak) IBOutlet id<YPCheckBoxDelegate> delegate;
 
+@property (nonatomic, copy) BOOL (^stateWillChangeBlock)(BOOL checked);
+@property (nonatomic, copy) void (^stateDidChangeBlock)(BOOL checked);
+
 + (id)checkBoxWithFrame:(CGRect)frame;
 
-@property (nonatomic, copy) void (^stateChangedBlock)(BOOL checked);
+- (void)setChecked:(BOOL)checked callDelegate:(BOOL)callDelegate;
 
 - (void)setNormalImage:(UIImage *)normalImage checkedImage:(UIImage *)checkedImage;
 

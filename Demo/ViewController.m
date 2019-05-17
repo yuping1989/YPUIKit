@@ -28,9 +28,7 @@
     [view addLine:YPLineTypeRight color:[UIColor purpleColor] align:30 leading:0 trailing:0 thickness:10];
     
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [view addLine:YPLineTypeRight color:[UIColor purpleColor] align:30 leading:0 trailing:0 thickness:20];
-    });
+    
 }
 
 

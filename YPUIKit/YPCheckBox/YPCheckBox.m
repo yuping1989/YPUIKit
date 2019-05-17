@@ -38,7 +38,7 @@
         }
         self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
-    [self addTarget:self action:@selector(checkboxBtnChecked) forControlEvents:UIControlEventTouchUpInside];
+    [self addTarget:self action:@selector(updateState:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)updateSubviews {
@@ -93,26 +93,40 @@
 
 
 - (void)setChecked:(BOOL)checked {
-    if (_checked == checked) {
-        return;
-    }
-    _checked = checked;
-    self.selected = checked;
+    [self setChecked:checked callDelegate:NO];
 }
 
-- (void)checkboxBtnChecked {
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(ypCheckBox:stateWillChange:)]) {
-        if (![_delegate ypCheckBox:self stateWillChange:!self.checked]) {
+- (void)setChecked:(BOOL)checked
+      callDelegate:(BOOL)callDelegate {
+    if (self.selected == checked) {
+        return;
+    }
+    [self updateState:callDelegate ? self : nil];
+}
+
+- (BOOL)checked {
+    return self.selected;
+}
+
+- (void)updateState:(YPCheckBox *)checkBox {
+    if (checkBox) {
+        if (_delegate && [_delegate respondsToSelector:@selector(ypCheckBox:stateWillChange:)]) {
+            if (![_delegate ypCheckBox:self stateWillChange:!self.checked]) {
+                return;
+            }
+        }
+        if (self.stateWillChangeBlock && !self.stateWillChangeBlock(!self.checked)) {
             return;
         }
     }
-    self.checked = !self.checked;
-    if (_delegate && [_delegate respondsToSelector:@selector(ypCheckBox:stateDidChanged:)]) {
-        [_delegate ypCheckBox:self stateDidChanged:self.checked];
-    }
-    if (self.stateChangedBlock) {
-        self.stateChangedBlock(self.checked);
+    self.selected = !self.selected;
+    if (checkBox) {
+        if (_delegate && [_delegate respondsToSelector:@selector(ypCheckBox:stateDidChanged:)]) {
+            [_delegate ypCheckBox:self stateDidChanged:self.checked];
+        }
+        if (self.stateDidChangeBlock) {
+            self.stateDidChangeBlock(self.checked);
+        }
     }
 }
 
