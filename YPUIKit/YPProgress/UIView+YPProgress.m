@@ -47,7 +47,6 @@
         self.progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
         self.progressHUD.contentColor = [UIColor whiteColor];
         self.progressHUD.label.textColor = [UIColor whiteColor];
-        self.progressHUD.delegate = self;
         [self.progressHUD showAnimated:YES];
         [view addSubview:self.progressHUD];
     }
@@ -57,28 +56,21 @@
     NSLog(@"show progress");
 }
 
+- (void)hideProgress {
+    if (self.progressHUD) {
+        return;
+    }
+    [self.progressHUD hideAnimated:YES];
+    self.progressHUD = nil;
+    NSLog(@"hide progress");
+}
+
 - (MBProgressHUD *)progressHUD {
     return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setProgressHUD:(MBProgressHUD *)progressHUD {
     objc_setAssociatedObject(self, @selector(progressHUD), progressHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (void)hudWasHidden:(MBProgressHUD *)hud {
-    if (!self.progressHUD) {
-        return;
-    }
-    [self.progressHUD removeFromSuperview];
-    self.progressHUD = nil;
-    NSLog(@"hide progress");
-}
-
-- (void)hideProgress {
-    if (!self.progressHUD) {
-        return;
-    }
-    [self.progressHUD hideAnimated:YES];
 }
 
 + (void)showToast:(NSString *)text {

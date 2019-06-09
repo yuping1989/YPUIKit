@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
-@interface UIView (YPProgress) <MBProgressHUDDelegate>
+@interface UIView (YPProgress)
 
 + (void)showProgressOnWindow;
 + (void)showProgressOnWindowWithText:(NSString *)text;
