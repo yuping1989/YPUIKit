@@ -57,7 +57,7 @@
 }
 
 - (void)hideProgress {
-    if (self.progressHUD) {
+    if (!self.progressHUD) {
         return;
     }
     [self.progressHUD hideAnimated:YES];
@@ -73,34 +73,105 @@
     objc_setAssociatedObject(self, @selector(progressHUD), progressHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-+ (void)showToast:(NSString *)text {
-    [UIView showToast:text hideAfterDelay:1.5f];
+#pragma mark - Toast
+
++ (MBProgressHUD *)showSuccessToast:(NSString *)text {
+    return [UIView showSuccessToast:text
+                     hideAfterDelay:1.5f];
 }
 
-+ (void)showToastOnAppWindow:(NSString *)text {
++ (MBProgressHUD *)showInfoToast:(NSString *)text {
+    return [UIView showInfoToast:text
+                  hideAfterDelay:1.5f];
+}
+
++ (MBProgressHUD *)showErrorToast:(NSString *)text {
+    return [UIView showErrorToast:text
+                   hideAfterDelay:1.5f];
+}
+
++ (MBProgressHUD *)showSuccessToast:(NSString *)text
+                     hideAfterDelay:(NSTimeInterval)delay {
+    UIImage *image = [[UIImage imageNamed:@"YPProgress.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    return [UIView showToast:text
+                       image:image
+              hideAfterDelay:delay];
+}
+
++ (MBProgressHUD *)showInfoToast:(NSString *)text
+                  hideAfterDelay:(NSTimeInterval)delay {
+    UIImage *image = [[UIImage imageNamed:@"YPProgress.bundle/info"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    return [UIView showToast:text
+                       image:image
+              hideAfterDelay:delay];
+}
+
++ (MBProgressHUD *)showErrorToast:(NSString *)text
+                   hideAfterDelay:(NSTimeInterval)delay {
+    UIImage *image = [[UIImage imageNamed:@"YPProgress.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    return [UIView showToast:text
+                       image:image
+              hideAfterDelay:delay];
+}
+
++ (MBProgressHUD *)showToastOnAppWindow:(NSString *)text {
     UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
-    [UIView showToast:text inView:window hideAfterDelay:1.5f];
+    return [UIView showToast:text
+                       image:nil
+                      inView:window
+              hideAfterDelay:1.5f];
 }
 
-+ (void)showToast:(NSString *)text hideAfterDelay:(NSTimeInterval)delay {
++ (MBProgressHUD *)showToast:(NSString *)text {
+    return [UIView showToast:text hideAfterDelay:1.5f];
+}
+
++ (MBProgressHUD *)showToast:(NSString *)text
+              hideAfterDelay:(NSTimeInterval)delay {
+    return [UIView showToast:text image:nil hideAfterDelay:delay];
+}
+
++ (MBProgressHUD *)showToast:(NSString *)text
+                       image:(UIImage *)image
+              hideAfterDelay:(NSTimeInterval)delay {
     UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    [UIView showToast:text inView:window hideAfterDelay:delay];
+    return [UIView showToast:text
+                       image:image
+                      inView:window
+              hideAfterDelay:delay];
 }
 
-+ (void)showToast:(NSString *)text
-           inView:(UIView *)view
-   hideAfterDelay:(NSTimeInterval)delay {
++ (MBProgressHUD *)showToast:(NSString *)text
+                       image:(UIImage *)image
+                      inView:(UIView *)view
+              hideAfterDelay:(NSTimeInterval)delay {
+    MBProgressHUD *hud = [self toastHUDAddedTo:view
+                                          text:text
+                                hideAfterDelay:delay];
+    if (image) {
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.customView = [[UIImageView alloc] initWithImage:image];
+        hud.square = YES;
+    } else {
+        hud.mode = MBProgressHUDModeText;
+    }
+    return hud;
+}
+
++ (MBProgressHUD *)toastHUDAddedTo:(UIView *)view
+                              text:(NSString *)text
+                    hideAfterDelay:(NSTimeInterval)delay {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.mode = MBProgressHUDModeText;
     hud.bezelView.color = [UIColor colorWithWhite:0.15f alpha:1];
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     hud.contentColor = [UIColor whiteColor];
-    hud.label.text = text;
-    hud.margin = 10.f;
+    hud.margin = 12.f;
     hud.center = view.center;
     hud.removeFromSuperViewOnHide = YES;
     hud.userInteractionEnabled = NO;
+    hud.label.text = text;
     [hud hideAnimated:YES afterDelay:delay];
+    return hud;
 }
 
 @end

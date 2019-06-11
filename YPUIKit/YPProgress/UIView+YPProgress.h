@@ -24,17 +24,37 @@
 - (void)showProgressOnView:(UIView *)view text:(NSString *)text userInteractionEnabled:(BOOL)enabled;
 - (void)hideProgress;
 
-// 在最上层的UIWindow上显示一个简短的提示，不会被键盘遮挡
-+ (void)showToast:(NSString *)text;
-+ (void)showToast:(NSString *)text
-   hideAfterDelay:(NSTimeInterval)delay;
+#pragma mark - Toast
+
++ (MBProgressHUD *)showSuccessToast:(NSString *)text;
++ (MBProgressHUD *)showInfoToast:(NSString *)text;
++ (MBProgressHUD *)showErrorToast:(NSString *)text;
+
++ (MBProgressHUD *)showSuccessToast:(NSString *)text
+                     hideAfterDelay:(NSTimeInterval)delay;
++ (MBProgressHUD *)showInfoToast:(NSString *)text
+                  hideAfterDelay:(NSTimeInterval)delay;
++ (MBProgressHUD *)showErrorToast:(NSString *)text
+                   hideAfterDelay:(NSTimeInterval)delay;
 
 // 在最底层UIWindow上显示一个简短的提示，有键盘存在时，可能会被遮挡
-+ (void)showToastOnAppWindow:(NSString *)text;
++ (MBProgressHUD *)showToastOnAppWindow:(NSString *)text;
 
-+ (void)showToast:(NSString *)text
-           inView:(UIView *)view
-   hideAfterDelay:(NSTimeInterval)delay;
+// 在最上层的UIWindow上显示一个简短的提示，不会被键盘遮挡
++ (MBProgressHUD *)showToast:(NSString *)text;
++ (MBProgressHUD *)showToast:(NSString *)text
+              hideAfterDelay:(NSTimeInterval)delay;
++ (MBProgressHUD *)showToast:(NSString *)text
+                       image:(UIImage *)image
+              hideAfterDelay:(NSTimeInterval)delay;
++ (MBProgressHUD *)showToast:(NSString *)text
+                       image:(UIImage *)image
+                      inView:(UIView *)view
+              hideAfterDelay:(NSTimeInterval)delay;
+
++ (MBProgressHUD *)toastHUDAddedTo:(UIView *)view
+                              text:(NSString *)text
+                    hideAfterDelay:(NSTimeInterval)delay;
 
 - (void)setProgressHUD:(MBProgressHUD *)progressHUD;
 - (MBProgressHUD *)progressHUD;
