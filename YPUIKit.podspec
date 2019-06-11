@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 	s.subspec 'YPProgress' do |progress|
 		progress.source_files = 'YPUIKit/YPProgress/**/*.{h,m}'
 		progress.dependency 'MBProgressHUD'
-		progress.resources = 'YPUIKit/YPProgress/YPProgress.bundle'
+		progress.resources = ['YPUIKit/YPProgress/YPProgress.bundle']
 	end
 
 	s.subspec 'YPBaseUpwardsView' do |buv|
