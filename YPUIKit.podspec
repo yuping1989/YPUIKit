@@ -1,7 +1,7 @@
 #YPUIKit.podspec
 Pod::Spec.new do |s|
 	s.name         = "YPUIKit"
-	s.version      = "1.1.5"
+	s.version      = "1.1.6"
 	s.summary      = "A collection of categories that contains many commonly used methods."
 
 	s.homepage     = "https://github.com/yuping1989/YPUIKit"
@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
 	s.ios.deployment_target = "8.0"
 	s.source       = { :git => "https://github.com/yuping1989/YPUIKit.git", :tag => s.version}
 	s.requires_arc = true
+	s.resources	   = 'YPUIKit/Resources/YPUIKit.bundle'
 
 	s.default_subspec = 'All'
 
@@ -28,7 +29,6 @@ Pod::Spec.new do |s|
 	s.subspec 'YPProgress' do |progress|
 		progress.source_files = 'YPUIKit/YPProgress/**/*.{h,m}'
 		progress.dependency 'MBProgressHUD'
-		progress.resources = ['YPUIKit/YPProgress/YPProgress.bundle']
 	end
 
 	s.subspec 'YPBaseUpwardsView' do |buv|

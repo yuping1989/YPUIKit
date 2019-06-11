@@ -92,7 +92,7 @@
 
 + (MBProgressHUD *)showSuccessToast:(NSString *)text
                      hideAfterDelay:(NSTimeInterval)delay {
-    UIImage *image = [[UIImage imageNamed:@"YPProgress.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *image = [[UIImage imageNamed:@"YPUIKit.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     return [UIView showToast:text
                        image:image
               hideAfterDelay:delay];
@@ -100,7 +100,7 @@
 
 + (MBProgressHUD *)showInfoToast:(NSString *)text
                   hideAfterDelay:(NSTimeInterval)delay {
-    UIImage *image = [[UIImage imageNamed:@"YPProgress.bundle/info"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *image = [[UIImage imageNamed:@"YPUIKit.bundle/info"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     return [UIView showToast:text
                        image:image
               hideAfterDelay:delay];
@@ -108,7 +108,7 @@
 
 + (MBProgressHUD *)showErrorToast:(NSString *)text
                    hideAfterDelay:(NSTimeInterval)delay {
-    UIImage *image = [[UIImage imageNamed:@"YPProgress.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *image = [[UIImage imageNamed:@"YPUIKit.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     return [UIView showToast:text
                        image:image
               hideAfterDelay:delay];

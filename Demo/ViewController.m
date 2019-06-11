@@ -27,7 +27,6 @@
     [view addBottomLineWithColor:[UIColor greenColor] paddingLeft:20];
     [view addLine:YPLineTypeLeft color:[UIColor redColor] align:0 leading:10 trailing:10 thickness:1];
     [view addLine:YPLineTypeRight color:[UIColor purpleColor] align:30 leading:0 trailing:0 thickness:10];
-    [MBProgressHUD appearance].animationType = MBProgressHUDAnimationZoom;
     [self.view showProgress];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.view hideProgress];
