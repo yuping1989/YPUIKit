@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-IB_DESIGNABLE
-
 @interface YPPlaceHolderTextView : UITextView
 
-@property (nonatomic, strong) IBInspectable NSString *placeholder;
-@property (nonatomic, strong) IBInspectable UIColor *placeholderColor;
+@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) UIColor *placeholderColor;
+
+@property (nonatomic, assign) UIEdgeInsets amendInsets;
 
 @end

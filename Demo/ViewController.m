@@ -9,8 +9,11 @@
 #import "ViewController.h"
 #import "UIView+YPLine.h"
 #import "UIView+YPProgress.h"
+#import "YPPlaceHolderTextView.h"
 
 @interface ViewController ()
+
+@property (nonatomic, weak) IBOutlet YPPlaceHolderTextView *textView;
 
 @end
 
@@ -19,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.textView.placeholder = @"88888888888888888888888888888888888";
+    
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     [self.view addSubview:view];

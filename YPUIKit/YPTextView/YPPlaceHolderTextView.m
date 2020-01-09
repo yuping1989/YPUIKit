@@ -7,9 +7,11 @@
 //
 
 #import "YPPlaceHolderTextView.h"
+#import <Masonry/Masonry.h>
+
 @interface YPPlaceHolderTextView ()
 
-@property (nonatomic, strong) UITextView *placeholderTextView;
+@property (nonatomic, strong) UILabel *placeholderLabel;
 
 @end
 
@@ -18,13 +20,19 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self awakeFromNib];
+        [self _setup];
     }
     return self;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self _setup];
+}
+
+- (void)_setup {
+    _placeholderColor = [UIColor lightGrayColor];
+    _amendInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChanged:) name:UITextViewTextDidChangeNotification object:nil];
 }
 
@@ -34,42 +42,42 @@
 
 - (void)setPlaceholder:(NSString *)placeholder {
     _placeholder = placeholder;
-    if (!self.placeholderTextView) {
-        self.placeholderTextView = [[UITextView alloc] initWithFrame:self.bounds];
-        [self addSubview:self.placeholderTextView];
-        self.placeholderTextView.userInteractionEnabled = NO;
-        self.placeholderTextView.backgroundColor = [UIColor clearColor];
-        self.placeholderTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.placeholderTextView.font = self.font;
-        if (self.placeholderColor) {
-            self.placeholderTextView.textColor = _placeholderColor;
-        } else {
-            self.placeholderTextView.textColor = [UIColor lightGrayColor];
-        }
+    if (!self.placeholderLabel) {
+        self.placeholderLabel = [[UILabel alloc] init];
+        [self addSubview:self.placeholderLabel];
+        self.placeholderLabel.font = self.font;
+        self.placeholderLabel.textColor = self.placeholderColor;
+        [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(self.textContainerInset.top + self.amendInsets.top);
+            make.left.equalTo(self).offset(self.textContainerInset.left + self.amendInsets.left);
+        }];
     }
-    self.placeholderTextView.text = placeholder;
+    self.placeholderLabel.text = placeholder;
 }
 
 - (void)setFont:(UIFont *)font {
     [super setFont:font];
-    self.placeholderTextView.font = font;
+    self.placeholderLabel.font = font;
 }
 
 - (void)setPlaceholderColor:(UIColor *)placeholderColor {
     _placeholderColor = placeholderColor;
-    self.placeholderTextView.textColor = placeholderColor;
+    self.placeholderLabel.textColor = placeholderColor;
 }
 
 - (void)setTextContainerInset:(UIEdgeInsets)textContainerInset {
     [super setTextContainerInset:textContainerInset];
-    self.placeholderTextView.textContainerInset = textContainerInset;
+    [self.placeholderLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(self.textContainerInset.top + self.amendInsets.top);
+        make.left.equalTo(self).offset(self.textContainerInset.left + self.amendInsets.left);
+    }];
 }
 
 - (void)textDidChanged:(NSNotification *)notification {
     if (self.text.length == 0) {
-        self.placeholderTextView.hidden = NO;
+        self.placeholderLabel.hidden = NO;
     } else {
-        self.placeholderTextView.hidden = YES;
+        self.placeholderLabel.hidden = YES;
     }
 }
 

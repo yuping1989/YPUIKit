@@ -1,7 +1,7 @@
 #YPUIKit.podspec
 Pod::Spec.new do |s|
 	s.name         = "YPUIKit"
-	s.version      = "1.1.6"
+	s.version      = "1.1.7"
 	s.summary      = "A collection of categories that contains many commonly used methods."
 
 	s.homepage     = "https://github.com/yuping1989/YPUIKit"
@@ -15,43 +15,43 @@ Pod::Spec.new do |s|
 
 	s.default_subspec = 'All'
 
-	s.subspec 'All' do |all|
-		all.source_files  = 'YPUIKit/**/*.{h,m}'
-		all.dependency 'MBProgressHUD'
-		all.dependency 'Masonry'
+	s.subspec 'All' do |ss|
+		ss.source_files  = 'YPUIKit/**/*.{h,m}'
+		ss.dependency 'MBProgressHUD'
+		ss.dependency 'Masonry'
 	end
 
-	s.subspec 'YPLine' do |line|
-		line.source_files = 'YPUIKit/YPLine/**/*.{h,m}'
-		line.dependency 'Masonry'
+	s.subspec 'YPLine' do |ss|
+		ss.source_files = 'YPUIKit/YPLine/**/*.{h,m}'
+		ss.dependency 'Masonry'
 	end
 
-	s.subspec 'YPProgress' do |progress|
-		progress.source_files = 'YPUIKit/YPProgress/**/*.{h,m}'
-		progress.dependency 'MBProgressHUD'
+	s.subspec 'YPProgress' do |ss|
+		ss.source_files = 'YPUIKit/YPProgress/**/*.{h,m}'
+		ss.dependency 'MBProgressHUD'
 	end
 
-	s.subspec 'YPBaseUpwardsView' do |buv|
-		buv.source_files = 'YPUIKit/YPBaseUpwardsView/**/*.{h,m}'
+	s.subspec 'YPBaseUpwardsView' do |ss|
+		ss.source_files = 'YPUIKit/YPBaseUpwardsView/**/*.{h,m}'
 	end
 
-	s.subspec 'YPCheckBox' do |cb|
-		cb.source_files = 'YPUIKit/YPCheckBox/**/*.{h,m}'
+	s.subspec 'YPCheckBox' do |ss|
+		ss.source_files = 'YPUIKit/YPCheckBox/**/*.{h,m}'
 	end
 
-	s.subspec 'YPControl' do |control|
-		control.source_files = 'YPUIKit/YPControl/**/*.{h,m}'
+	s.subspec 'YPControl' do |ss|
+		ss.source_files = 'YPUIKit/YPControl/**/*.{h,m}'
 	end
 
-	s.subspec 'YPPageControlView' do |pcv|
-		pcv.source_files = 'YPUIKit/YPPageControlView/**/*.{h,m}'
+	s.subspec 'YPPageControlView' do |ss|
+		ss.source_files = 'YPUIKit/YPPageControlView/**/*.{h,m}'
 	end
 
-	s.subspec 'YPTagCloudView' do |tcv|
-		tcv.source_files = 'YPUIKit/YPTagCloudView/**/*.{h,m}'
+	s.subspec 'YPTagCloudView' do |ss|
+		ss.source_files = 'YPUIKit/YPTagCloudView/**/*.{h,m}'
 	end
 
-	s.subspec 'YPTextView' do |tv|
-		tv.source_files = 'YPUIKit/YPTextView/**/*.{h,m}'
+	s.subspec 'YPTextView' do |ss|
+		ss.source_files = 'YPUIKit/YPTextView/**/*.{h,m}'
 	end
 end
