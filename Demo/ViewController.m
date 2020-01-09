@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.textView.placeholder = @"88888888888888888888888888888888888";
+    self.textView.placeholder = @"8888888888888888888888888888888888888888888";
     
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];

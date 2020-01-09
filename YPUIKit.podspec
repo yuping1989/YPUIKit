@@ -53,5 +53,6 @@ Pod::Spec.new do |s|
 
 	s.subspec 'YPTextView' do |ss|
 		ss.source_files = 'YPUIKit/YPTextView/**/*.{h,m}'
+		ss.dependency 'Masonry'
 	end
 end
