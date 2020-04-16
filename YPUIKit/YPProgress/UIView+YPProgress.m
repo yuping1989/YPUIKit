@@ -20,20 +20,20 @@
     self = [super init];
     if (self) {
         self.duration = 1.5f;
-        self.type = YPToastModeText;
+        self.mode = YPToastModeText;
         self.inFirstWindow = NO;
     }
     return self;
 }
 
-- (void)setType:(YPToastMode)type {
-    _type = type;
+- (void)setMode:(YPToastMode)mode {
+    _mode = mode;
     NSString *name;
-    if (type == YPToastModeSuccess) {
+    if (mode == YPToastModeSuccess) {
         name = @"success";
-    } else if (type == YPToastModeInfo) {
+    } else if (mode == YPToastModeInfo) {
         name = @"info";
-    } else if (type == YPToastModeError) {
+    } else if (mode == YPToastModeError) {
         name = @"error";
     }
     self.image = [[UIImage imageNamed:[NSString stringWithFormat:@"YPUIKit.bundle/%@", name]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -118,19 +118,19 @@
 
 + (MBProgressHUD *)showSuccessToast:(NSString *)text {
     return [self showToast:text config:^(YPToastConfig *config) {
-        config.type = YPToastModeSuccess;
+        config.mode = YPToastModeSuccess;
     }];
 }
 
 + (MBProgressHUD *)showInfoToast:(NSString *)text {
     return [self showToast:text config:^(YPToastConfig *config) {
-        config.type = YPToastModeInfo;
+        config.mode = YPToastModeInfo;
     }];
 }
 
 + (MBProgressHUD *)showErrorToast:(NSString *)text {
     return [self showToast:text config:^(YPToastConfig *config) {
-        config.type = YPToastModeError;
+        config.mode = YPToastModeError;
     }];
 }
 
