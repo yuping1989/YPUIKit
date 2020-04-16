@@ -9,6 +9,47 @@
 #import "UIView+YPProgress.h"
 #import <objc/runtime.h>
 
+@interface YPToastConfig ()
+
+
+@end
+
+@implementation YPToastConfig
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.duration = 1.5f;
+        self.type = YPToastModeText;
+        self.inFirstWindow = NO;
+    }
+    return self;
+}
+
+- (void)setType:(YPToastMode)type {
+    _type = type;
+    NSString *name;
+    if (type == YPToastModeSuccess) {
+        name = @"success";
+    } else if (type == YPToastModeInfo) {
+        name = @"info";
+    } else if (type == YPToastModeError) {
+        name = @"error";
+    }
+    self.image = [[UIImage imageNamed:[NSString stringWithFormat:@"YPUIKit.bundle/%@", name]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+}
+
+- (void)setInFirstWindow:(BOOL)inFirstWindow {
+    _inFirstWindow = inFirstWindow;
+    if (inFirstWindow) {
+        self.inView = [UIApplication sharedApplication].windows.firstObject;
+    } else {
+        self.inView = [UIApplication sharedApplication].windows.lastObject;
+    }
+}
+
+@end
+
 @implementation UIView (YPProgress)
 
 + (void)showProgressOnWindow {
@@ -16,12 +57,12 @@
 }
 
 + (void)showProgressOnWindowWithText:(NSString *)text {
-    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
     [window showProgressOnView:window text:text userInteractionEnabled:YES];
 }
 
 + (void)hideProgress {
-    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
     [window hideProgress];
 }
 
@@ -36,7 +77,7 @@
 }
 
 - (void)showProgressOnWindowWithText:(NSString *)text {
-    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
     [self showProgressOnView:window text:text userInteractionEnabled:YES];
 }
 
@@ -76,81 +117,39 @@
 #pragma mark - Toast
 
 + (MBProgressHUD *)showSuccessToast:(NSString *)text {
-    return [UIView showSuccessToast:text
-                     hideAfterDelay:1.5f];
+    return [self showToast:text config:^(YPToastConfig *config) {
+        config.type = YPToastModeSuccess;
+    }];
 }
 
 + (MBProgressHUD *)showInfoToast:(NSString *)text {
-    return [UIView showInfoToast:text
-                  hideAfterDelay:1.5f];
+    return [self showToast:text config:^(YPToastConfig *config) {
+        config.type = YPToastModeInfo;
+    }];
 }
 
 + (MBProgressHUD *)showErrorToast:(NSString *)text {
-    return [UIView showErrorToast:text
-                   hideAfterDelay:1.5f];
-}
-
-+ (MBProgressHUD *)showSuccessToast:(NSString *)text
-                     hideAfterDelay:(NSTimeInterval)delay {
-    UIImage *image = [[UIImage imageNamed:@"YPUIKit.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    return [UIView showToast:text
-                       image:image
-              hideAfterDelay:delay];
-}
-
-+ (MBProgressHUD *)showInfoToast:(NSString *)text
-                  hideAfterDelay:(NSTimeInterval)delay {
-    UIImage *image = [[UIImage imageNamed:@"YPUIKit.bundle/info"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    return [UIView showToast:text
-                       image:image
-              hideAfterDelay:delay];
-}
-
-+ (MBProgressHUD *)showErrorToast:(NSString *)text
-                   hideAfterDelay:(NSTimeInterval)delay {
-    UIImage *image = [[UIImage imageNamed:@"YPUIKit.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    return [UIView showToast:text
-                       image:image
-              hideAfterDelay:delay];
-}
-
-+ (MBProgressHUD *)showToastOnAppWindow:(NSString *)text {
-    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
-    return [UIView showToast:text
-                       image:nil
-                      inView:window
-              hideAfterDelay:1.5f];
+    return [self showToast:text config:^(YPToastConfig *config) {
+        config.type = YPToastModeError;
+    }];
 }
 
 + (MBProgressHUD *)showToast:(NSString *)text {
-    return [UIView showToast:text hideAfterDelay:1.5f];
+    return [self showToast:text config:nil];
 }
 
 + (MBProgressHUD *)showToast:(NSString *)text
-              hideAfterDelay:(NSTimeInterval)delay {
-    return [UIView showToast:text image:nil hideAfterDelay:delay];
-}
-
-+ (MBProgressHUD *)showToast:(NSString *)text
-                       image:(UIImage *)image
-              hideAfterDelay:(NSTimeInterval)delay {
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    return [UIView showToast:text
-                       image:image
-                      inView:window
-              hideAfterDelay:delay];
-}
-
-+ (MBProgressHUD *)showToast:(NSString *)text
-                       image:(UIImage *)image
-                      inView:(UIView *)view
-              hideAfterDelay:(NSTimeInterval)delay {
-    MBProgressHUD *hud = [self toastHUDAddedTo:view
+                      config:(void (^)(YPToastConfig *config))configBlock {
+    YPToastConfig *config = [[YPToastConfig alloc] init];
+    if (configBlock) {
+        configBlock(config);
+    }
+    MBProgressHUD *hud = [self toastHUDAddedTo:config.inView
                                           text:text
-                                hideAfterDelay:delay];
-    if (image) {
+                                hideAfterDelay:config.duration];
+    if (config.image) {
         hud.mode = MBProgressHUDModeCustomView;
-        hud.customView = [[UIImageView alloc] initWithImage:image];
+        hud.customView = [[UIImageView alloc] initWithImage:config.image];
         hud.square = YES;
     } else {
         hud.mode = MBProgressHUDModeText;

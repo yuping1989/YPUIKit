@@ -9,6 +9,24 @@
 #import <UIKit/UIKit.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
+typedef NS_ENUM(NSInteger, YPToastMode) {
+    YPToastModeText,
+    YPToastModeSuccess,
+    YPToastModeInfo,
+    YPToastModeError
+};
+
+@interface YPToastConfig : NSObject
+
+@property (nonatomic) YPToastMode type;
+@property (nonatomic) UIImage *image;
+@property (nonatomic) CGFloat duration;
+@property (nonatomic) UIView *inView;
+@property (nonatomic) BOOL inFirstWindow;
+
+@end
+
+
 @interface UIView (YPProgress)
 
 + (void)showProgressOnWindow;
@@ -29,28 +47,11 @@
 + (MBProgressHUD *)showSuccessToast:(NSString *)text;
 + (MBProgressHUD *)showInfoToast:(NSString *)text;
 + (MBProgressHUD *)showErrorToast:(NSString *)text;
-
-+ (MBProgressHUD *)showSuccessToast:(NSString *)text
-                     hideAfterDelay:(NSTimeInterval)delay;
-+ (MBProgressHUD *)showInfoToast:(NSString *)text
-                  hideAfterDelay:(NSTimeInterval)delay;
-+ (MBProgressHUD *)showErrorToast:(NSString *)text
-                   hideAfterDelay:(NSTimeInterval)delay;
-
-// 在最底层UIWindow上显示一个简短的提示，有键盘存在时，可能会被遮挡
-+ (MBProgressHUD *)showToastOnAppWindow:(NSString *)text;
-
-// 在最上层的UIWindow上显示一个简短的提示，不会被键盘遮挡
 + (MBProgressHUD *)showToast:(NSString *)text;
+
 + (MBProgressHUD *)showToast:(NSString *)text
-              hideAfterDelay:(NSTimeInterval)delay;
-+ (MBProgressHUD *)showToast:(NSString *)text
-                       image:(UIImage *)image
-              hideAfterDelay:(NSTimeInterval)delay;
-+ (MBProgressHUD *)showToast:(NSString *)text
-                       image:(UIImage *)image
-                      inView:(UIView *)view
-              hideAfterDelay:(NSTimeInterval)delay;
+                      config:(void (^)(YPToastConfig *config))configBlock;
+
 
 + (MBProgressHUD *)toastHUDAddedTo:(UIView *)view
                               text:(NSString *)text
