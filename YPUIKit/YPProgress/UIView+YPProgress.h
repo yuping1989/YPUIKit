@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, YPToastMode) {
 
 @interface YPToastConfig : NSObject
 
-@property (nonatomic) YPToastMode type;
+@property (nonatomic) YPToastMode mode;
 @property (nonatomic) UIImage *image;
 @property (nonatomic) CGFloat duration;
 @property (nonatomic) UIView *inView;
