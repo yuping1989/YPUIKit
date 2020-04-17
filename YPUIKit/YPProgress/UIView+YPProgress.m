@@ -66,6 +66,20 @@
     [window hideProgress];
 }
 
++ (void)showProgressOnLastWindow {
+    [self showProgressOnLastWindowWithText:nil];
+}
+
++ (void)showProgressOnLastWindowWithText:(NSString *)text {
+    UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
+    [window showProgressOnView:window text:text userInteractionEnabled:YES];
+}
+
++ (void)hideProgressOnLastWindow {
+    UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
+    [window hideProgress];
+}
+
 #pragma mark - ProgressHUD
 
 - (void)showProgress {

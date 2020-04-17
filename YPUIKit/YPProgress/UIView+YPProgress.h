@@ -33,6 +33,10 @@ typedef NS_ENUM(NSInteger, YPToastMode) {
 + (void)showProgressOnWindowWithText:(NSString *)text;
 + (void)hideProgress;
 
++ (void)showProgressOnLastWindow;
++ (void)showProgressOnLastWindowWithText:(NSString *)text;
++ (void)hideProgressOnLastWindow;
+
 /**
  *  显示等待提示框
  */
