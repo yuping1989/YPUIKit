@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, YPToastMode) {
 + (MBProgressHUD *)showInfoToast:(NSString *)text;
 + (MBProgressHUD *)showErrorToast:(NSString *)text;
 + (MBProgressHUD *)showToast:(NSString *)text;
++ (MBProgressHUD *)showToastOnAppWindow:(NSString *)text;
 
 + (MBProgressHUD *)showToast:(NSString *)text
                       config:(void (^)(YPToastConfig *config))configBlock;

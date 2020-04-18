@@ -152,6 +152,12 @@
     return [self showToast:text config:nil];
 }
 
++ (MBProgressHUD *)showToastOnAppWindow:(NSString *)text {
+    return [self showToast:text config:^(YPToastConfig *config) {
+        config.inFirstWindow = YES;
+    }];
+}
+
 + (MBProgressHUD *)showToast:(NSString *)text
                       config:(void (^)(YPToastConfig *config))configBlock {
     YPToastConfig *config = [[YPToastConfig alloc] init];
