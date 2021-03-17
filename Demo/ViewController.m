@@ -39,11 +39,11 @@
 
 - (IBAction)buttonClicked:(id)sender {
     
+    [UIView showProgress];
     
-    [UIView showProgressOnWindow];
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView hideProgress];
+        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     });
 }
 

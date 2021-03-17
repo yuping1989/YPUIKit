@@ -52,32 +52,43 @@
 
 @implementation UIView (YPProgress)
 
-+ (void)showProgressOnWindow {
-    [self showProgressOnWindowWithText:nil];
++ (void)showProgressOnFirstWindow {
+    [self showProgressOnFirstWindowWithText:nil];
 }
 
-+ (void)showProgressOnWindowWithText:(NSString *)text {
++ (void)showProgressOnFirstWindowWithText:(NSString *)text {
     UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    [window showProgressOnView:window text:text userInteractionEnabled:YES];
+}
+
++ (void)hideProgressOnFirstWindow {
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    [window hideProgress];
+}
+
++ (void)showProgress {
+    [self showProgressWithText:nil];
+}
+
++ (void)showProgressWithText:(NSString *)text {
+    UIWindow *window = [self lastWindow];
     [window showProgressOnView:window text:text userInteractionEnabled:YES];
 }
 
 + (void)hideProgress {
-    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    UIWindow *window = [self lastWindow];
     [window hideProgress];
 }
 
-+ (void)showProgressOnLastWindow {
-    [self showProgressOnLastWindowWithText:nil];
-}
-
-+ (void)showProgressOnLastWindowWithText:(NSString *)text {
-    UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
-    [window showProgressOnView:window text:text userInteractionEnabled:YES];
-}
-
-+ (void)hideProgressOnLastWindow {
-    UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
-    [window hideProgress];
++ (UIWindow *)lastWindow {
+    NSArray *windows = [UIApplication sharedApplication].windows;
+    for (UIWindow *window in windows.reverseObjectEnumerator) {
+        if ([window isKindOfClass:[UIWindow class]] &&
+            CGRectEqualToRect(window.bounds, [UIScreen mainScreen].bounds)) {
+            return window;
+        }
+    }
+    return [UIApplication sharedApplication].keyWindow;
 }
 
 #pragma mark - ProgressHUD
