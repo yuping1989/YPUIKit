@@ -52,30 +52,38 @@
 
 @implementation UIView (YPProgress)
 
-+ (void)showProgressOnFirstWindow {
-    [self showProgressOnFirstWindowWithText:nil];
-}
-
-+ (void)showProgressOnFirstWindowWithText:(NSString *)text {
-    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
-    [window showProgressOnView:window text:text userInteractionEnabled:YES];
-}
-
-+ (void)hideProgressOnFirstWindow {
-    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
-    [window hideProgress];
-}
-
 + (void)showProgress {
     [self showProgressWithText:nil];
 }
 
 + (void)showProgressWithText:(NSString *)text {
-    UIWindow *window = [self lastWindow];
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
     [window showProgressOnView:window text:text userInteractionEnabled:YES];
 }
 
 + (void)hideProgress {
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    [window hideProgress];
+}
+
++ (void)hideAllProgress {
+    for (UIWindow *window in [UIApplication sharedApplication].windows) {
+        if (window.progressHUD) {
+            [window hideProgress];
+        }
+    }
+}
+
++ (void)showProgressOnLastWindow {
+    [self showProgressWithText:nil];
+}
+
++ (void)showProgressOnLastWindowWithText:(NSString *)text {
+    UIWindow *window = [self lastWindow];
+    [window showProgressOnView:window text:text userInteractionEnabled:YES];
+}
+
++ (void)hideProgressOnLastWindow {
     UIWindow *window = [self lastWindow];
     [window hideProgress];
 }
@@ -118,8 +126,6 @@
     }
     self.progressHUD.label.text = text;
     self.progressHUD.userInteractionEnabled = enabled;
-    
-    NSLog(@"show progress");
 }
 
 - (void)hideProgress {
@@ -128,7 +134,6 @@
     }
     [self.progressHUD hideAnimated:YES];
     self.progressHUD = nil;
-    NSLog(@"hide progress");
 }
 
 - (MBProgressHUD *)progressHUD {

@@ -29,13 +29,14 @@ typedef NS_ENUM(NSInteger, YPToastMode) {
 
 @interface UIView (YPProgress)
 
-+ (void)showProgressOnFirstWindow;
-+ (void)showProgressOnFirstWindowWithText:(NSString *)text;
-+ (void)hideProgressOnFirstWindow;
-
 + (void)showProgress;
 + (void)showProgressWithText:(NSString *)text;
 + (void)hideProgress;
++ (void)hideAllProgress;
+
++ (void)showProgressOnLastWindow;
++ (void)showProgressOnLastWindowWithText:(NSString *)text;
++ (void)hideProgressOnLastWindow;
 
 /**
  *  显示等待提示框
