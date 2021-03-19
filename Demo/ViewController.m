@@ -10,6 +10,7 @@
 #import "UIView+YPLine.h"
 #import "UIView+YPProgress.h"
 #import "YPPlaceHolderTextView.h"
+#import "YPToastView.h"
 
 @interface ViewController ()
 
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view, typically from a nib.
     self.textView.placeholder = @"8888888888888888888888888888888888888888888";
     
@@ -39,8 +41,27 @@
 
 - (IBAction)buttonClicked:(id)sender {
     
-    [UIView showProgress];
+//    [UIView showProgress];
     
+
+    
+//    YPToastView *toast = [[YPToastView alloc] init];
+//    toast.image = [[UIImage imageNamed:@"YPUIKit.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    toast.text = @"发送发送";
+//    toast.duration = 1.5f;
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    [toast showInView:window];
+    
+//    YPToast(@"123", toast.duration(2).success());
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+//    });
+    YPErrorToast(@"不错哦");
+}
+
+- (IBAction)toastButtonClicked:(id)sender {
+    [UIView showProgressWithText:@"呵呵"];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView hideProgress];
         [[[UIApplication sharedApplication] keyWindow] endEditing:YES];

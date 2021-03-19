@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		58D7B1C6685F98C1FE3D6C20 /* libPods-YPUIKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91578D450D08B1C0C30C71A3 /* libPods-YPUIKit.a */; };
 		7E1C9F652129B4730069DC46 /* UIView+YPProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C9F642129B4730069DC46 /* UIView+YPProgress.m */; };
+		7E44280E244D3AAC00F1FB7F /* YPToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44280C244D3AAC00F1FB7F /* YPToastView.m */; };
 		7E55A962222FBEA400B1A2CC /* UIView+YPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E55A961222FBEA400B1A2CC /* UIView+YPLine.m */; };
 		7E9F22DC22AFB35800407667 /* YPUIKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7E9F22DB22AFB35800407667 /* YPUIKit.bundle */; };
 		7ED6753A20A96C01003034C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6753020A96C01003034C2 /* Assets.xcassets */; };
@@ -31,6 +32,8 @@
 		77A6A9CD924B0FB52221302D /* Pods-YPUIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPUIKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-YPUIKit/Pods-YPUIKit.release.xcconfig"; sourceTree = "<group>"; };
 		7E1C9F632129B4730069DC46 /* UIView+YPProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YPProgress.h"; sourceTree = "<group>"; };
 		7E1C9F642129B4730069DC46 /* UIView+YPProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YPProgress.m"; sourceTree = "<group>"; };
+		7E44280B244D3AAC00F1FB7F /* YPToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPToastView.h; sourceTree = "<group>"; };
+		7E44280C244D3AAC00F1FB7F /* YPToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPToastView.m; sourceTree = "<group>"; };
 		7E55A960222FBEA400B1A2CC /* UIView+YPLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+YPLine.h"; sourceTree = "<group>"; };
 		7E55A961222FBEA400B1A2CC /* UIView+YPLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+YPLine.m"; sourceTree = "<group>"; };
 		7E9F22DB22AFB35800407667 /* YPUIKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YPUIKit.bundle; sourceTree = "<group>"; };
@@ -102,6 +105,15 @@
 			path = YPProgress;
 			sourceTree = "<group>";
 		};
+		7E442809244D3A9500F1FB7F /* YPToast */ = {
+			isa = PBXGroup;
+			children = (
+				7E44280B244D3AAC00F1FB7F /* YPToastView.h */,
+				7E44280C244D3AAC00F1FB7F /* YPToastView.m */,
+			);
+			path = YPToast;
+			sourceTree = "<group>";
+		};
 		7E55A95C222FBE0400B1A2CC /* YPLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +153,7 @@
 		7ED6752D20A96C01003034C2 /* YPUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				7E9F22DD22AFF03900407667 /* Resources */,
+				7E442809244D3A9500F1FB7F /* YPToast */,
 				7E55A95C222FBE0400B1A2CC /* YPLine */,
 				7E1C9F622129B4520069DC46 /* YPProgress */,
 				7ED6754120A96CA3003034C2 /* YPBaseUpwardsView */,
@@ -150,6 +162,7 @@
 				7ED6754C20A96CA3003034C2 /* YPPageControlView */,
 				7ED6755420A96CA3003034C2 /* YPTagCloudView */,
 				7ED6754420A96CA3003034C2 /* YPTextView */,
+				7E9F22DD22AFF03900407667 /* Resources */,
 			);
 			path = YPUIKit;
 			sourceTree = "<group>";
@@ -322,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E44280E244D3AAC00F1FB7F /* YPToastView.m in Sources */,
 				7ED6755B20A96CA3003034C2 /* YPPageView.m in Sources */,
 				7ED6755D20A96CA3003034C2 /* YPCheckBox.m in Sources */,
 				7ED6755E20A96CA3003034C2 /* YPTagCloudView.m in Sources */,
@@ -476,9 +490,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U259566QKD;
+				DEVELOPMENT_TEAM = 7X2852KFDE;
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yp.YPUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -491,9 +506,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U259566QKD;
+				DEVELOPMENT_TEAM = 7X2852KFDE;
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yp.YPUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

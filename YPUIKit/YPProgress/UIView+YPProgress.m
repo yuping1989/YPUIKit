@@ -9,47 +9,6 @@
 #import "UIView+YPProgress.h"
 #import <objc/runtime.h>
 
-@interface YPToastConfig ()
-
-
-@end
-
-@implementation YPToastConfig
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.duration = 1.5f;
-        self.mode = YPToastModeText;
-        self.inFirstWindow = NO;
-    }
-    return self;
-}
-
-- (void)setMode:(YPToastMode)mode {
-    _mode = mode;
-    NSString *name;
-    if (mode == YPToastModeSuccess) {
-        name = @"success";
-    } else if (mode == YPToastModeInfo) {
-        name = @"info";
-    } else if (mode == YPToastModeError) {
-        name = @"error";
-    }
-    self.image = [[UIImage imageNamed:[NSString stringWithFormat:@"YPUIKit.bundle/%@", name]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-}
-
-- (void)setInFirstWindow:(BOOL)inFirstWindow {
-    _inFirstWindow = inFirstWindow;
-    if (inFirstWindow) {
-        self.inView = [UIApplication sharedApplication].windows.firstObject;
-    } else {
-        self.inView = [UIApplication sharedApplication].windows.lastObject;
-    }
-}
-
-@end
-
 @implementation UIView (YPProgress)
 
 + (void)showProgress {
@@ -89,8 +48,7 @@
 }
 
 + (UIWindow *)lastWindow {
-    NSArray *windows = [UIApplication sharedApplication].windows;
-    for (UIWindow *window in windows.reverseObjectEnumerator) {
+    for (UIWindow *window in [UIApplication sharedApplication].windows.reverseObjectEnumerator) {
         if ([window isKindOfClass:[UIWindow class]] &&
             CGRectEqualToRect(window.bounds, [UIScreen mainScreen].bounds)) {
             return window;
@@ -142,71 +100,6 @@
 
 - (void)setProgressHUD:(MBProgressHUD *)progressHUD {
     objc_setAssociatedObject(self, @selector(progressHUD), progressHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-#pragma mark - Toast
-
-+ (MBProgressHUD *)showSuccessToast:(NSString *)text {
-    return [self showToast:text config:^(YPToastConfig *config) {
-        config.mode = YPToastModeSuccess;
-    }];
-}
-
-+ (MBProgressHUD *)showInfoToast:(NSString *)text {
-    return [self showToast:text config:^(YPToastConfig *config) {
-        config.mode = YPToastModeInfo;
-    }];
-}
-
-+ (MBProgressHUD *)showErrorToast:(NSString *)text {
-    return [self showToast:text config:^(YPToastConfig *config) {
-        config.mode = YPToastModeError;
-    }];
-}
-
-+ (MBProgressHUD *)showToast:(NSString *)text {
-    return [self showToast:text config:nil];
-}
-
-+ (MBProgressHUD *)showToastOnAppWindow:(NSString *)text {
-    return [self showToast:text config:^(YPToastConfig *config) {
-        config.inFirstWindow = YES;
-    }];
-}
-
-+ (MBProgressHUD *)showToast:(NSString *)text
-                      config:(void (^)(YPToastConfig *config))configBlock {
-    YPToastConfig *config = [[YPToastConfig alloc] init];
-    if (configBlock) {
-        configBlock(config);
-    }
-    MBProgressHUD *hud = [self toastHUDAddedTo:config.inView
-                                          text:text
-                                hideAfterDelay:config.duration];
-    if (config.image) {
-        hud.mode = MBProgressHUDModeCustomView;
-        hud.customView = [[UIImageView alloc] initWithImage:config.image];
-        hud.square = YES;
-    } else {
-        hud.mode = MBProgressHUDModeText;
-    }
-    return hud;
-}
-
-+ (MBProgressHUD *)toastHUDAddedTo:(UIView *)view
-                              text:(NSString *)text
-                    hideAfterDelay:(NSTimeInterval)delay {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.bezelView.color = [UIColor colorWithWhite:0.15f alpha:1];
-    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    hud.contentColor = [UIColor whiteColor];
-    hud.margin = 12.f;
-    hud.center = view.center;
-    hud.removeFromSuperViewOnHide = YES;
-    hud.userInteractionEnabled = NO;
-    hud.label.text = text;
-    [hud hideAnimated:YES afterDelay:delay];
-    return hud;
 }
 
 @end

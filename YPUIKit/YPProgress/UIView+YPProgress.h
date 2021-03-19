@@ -9,24 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
-typedef NS_ENUM(NSInteger, YPToastMode) {
-    YPToastModeText,
-    YPToastModeSuccess,
-    YPToastModeInfo,
-    YPToastModeError
-};
-
-@interface YPToastConfig : NSObject
-
-@property (nonatomic) YPToastMode mode;
-@property (nonatomic) UIImage *image;
-@property (nonatomic) CGFloat duration;
-@property (nonatomic) UIView *inView;
-@property (nonatomic) BOOL inFirstWindow;
-
-@end
-
-
 @interface UIView (YPProgress)
 
 + (void)showProgress;
@@ -46,22 +28,6 @@ typedef NS_ENUM(NSInteger, YPToastMode) {
 - (void)showProgressOnWindowWithText:(NSString *)text;
 - (void)showProgressOnView:(UIView *)view text:(NSString *)text userInteractionEnabled:(BOOL)enabled;
 - (void)hideProgress;
-
-#pragma mark - Toast
-
-+ (MBProgressHUD *)showSuccessToast:(NSString *)text;
-+ (MBProgressHUD *)showInfoToast:(NSString *)text;
-+ (MBProgressHUD *)showErrorToast:(NSString *)text;
-+ (MBProgressHUD *)showToast:(NSString *)text;
-+ (MBProgressHUD *)showToastOnAppWindow:(NSString *)text;
-
-+ (MBProgressHUD *)showToast:(NSString *)text
-                      config:(void (^)(YPToastConfig *config))configBlock;
-
-
-+ (MBProgressHUD *)toastHUDAddedTo:(UIView *)view
-                              text:(NSString *)text
-                    hideAfterDelay:(NSTimeInterval)delay;
 
 - (void)setProgressHUD:(MBProgressHUD *)progressHUD;
 - (MBProgressHUD *)progressHUD;
