@@ -9,10 +9,30 @@
 #import "YPToastView.h"
 #import <Masonry.h>
 
+#pragma mark - 快捷方法
+YPToastView * YPTextToast(NSString *text) {
+    return YPToast(text).show();
+}
+
+YPToastView * YPSuccessToast(NSString *text) {
+    return YPToast(text).success().show();
+}
+
+YPToastView * YPInfoToast(NSString *text) {
+    return YPToast(text).info().show();
+}
+
+YPToastView * YPErrorToast(NSString *text) {
+    return YPToast(text).error().show();
+}
+
+YPToastView * YPToast(NSString *text) {
+    return [[YPToastView alloc] initWithText:text];
+}
+
 @interface YPToastView ()
 
 @end
-
 
 @implementation YPToastView
 
@@ -51,17 +71,18 @@
 - (void)_setup {
     _autoHide = YES;
     
-    _insets = UIEdgeInsetsMake(12, 15, -12, -15);
+    _insets = UIEdgeInsetsMake(12, 15, 12, 15);
     _textImageSpace = 8;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        _maxWidth = 300;
+        _maxWidth = 400;
     } else {
         _maxWidth = [UIScreen mainScreen].bounds.size.width - 60;
     }
     
     self.backgroundColor = [UIColor colorWithWhite:0.15f alpha:1];
-    self.layer.cornerRadius = 5;
+    _cornerRadius = 5;
+    _animateDuration = 0.25f;
 }
 
 - (void)setImage:(UIImage *)image {
@@ -87,12 +108,10 @@
     if (!view) {
         view = [YPToastView lastWindow];
     }
-    
     [YPToastView hideAllToastsInView:view];
+    
     [view addSubview:self];
-    
     CGFloat maxWidth = self.maxWidth - self.insets.left + self.insets.right;
-    
     if (self.image) {
         [self addSubview:self.contentView];
         [self.contentView addSubview:self.imageView];
@@ -107,15 +126,16 @@
             make.bottom.equalTo(self.contentView);
             make.left.equalTo(self.contentView);
             make.right.equalTo(self.contentView);
-            make.width.mas_lessThanOrEqualTo(maxWidth);
+            if (maxWidth > 0) {
+                make.width.mas_lessThanOrEqualTo(maxWidth);
+            }
         }];
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
             make.top.greaterThanOrEqualTo(self).offset(self.insets.top);
             make.left.greaterThanOrEqualTo(self).offset(self.insets.left);
-            make.bottom.lessThanOrEqualTo(self).offset(self.insets.bottom);
-            make.right.lessThanOrEqualTo(self).offset(self.insets.right);
-            make.width.mas_greaterThanOrEqualTo(60);
+            make.bottom.lessThanOrEqualTo(self).offset(-self.insets.bottom);
+            make.right.lessThanOrEqualTo(self).offset(-self.insets.right);
         }];
     } else {
         [self addSubview:self.textLabel];
@@ -123,17 +143,29 @@
         [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.greaterThanOrEqualTo(self).offset(self.insets.top);
             make.left.greaterThanOrEqualTo(self).offset(self.insets.left);
-            make.bottom.lessThanOrEqualTo(self).offset(self.insets.bottom);
-            make.right.lessThanOrEqualTo(self).offset(self.insets.right);
-            make.width.mas_lessThanOrEqualTo(maxWidth);
+            make.bottom.lessThanOrEqualTo(self).offset(-self.insets.bottom);
+            make.right.lessThanOrEqualTo(self).offset(-self.insets.right);
+            if (maxWidth > 0) {
+                make.width.mas_lessThanOrEqualTo(maxWidth);
+            }
         }];
     }
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(view);
+        if (self.minWidth > 0) {
+            make.width.mas_greaterThanOrEqualTo(self.minWidth);
+        }
+        if (self.maxHeight > 0) {
+            make.height.mas_lessThanOrEqualTo(self.maxHeight);
+        }
+        if (self.minHeight > 0) {
+            make.height.mas_greaterThanOrEqualTo(self.minHeight);
+        }
     }];
+    self.layer.cornerRadius = self.cornerRadius;
     
     self.alpha = 0;
-    [UIView animateWithDuration:0.25f animations:^{
+    [UIView animateWithDuration:self.animateDuration animations:^{
         self.alpha = 1;
     }];
     
@@ -143,7 +175,7 @@
 }
 
 - (void)hide {
-    [UIView animateWithDuration:0.25f animations:^{
+    [UIView animateWithDuration:self.animateDuration animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];

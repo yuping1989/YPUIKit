@@ -9,16 +9,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class YPToastView;
+
 /*
  * 快捷调用方法
  */
-#define YPTextToast(_text_) YPToast(_text_).show();
-#define YPSuccessToast(_text_) YPToast(_text_).success().show();
-#define YPErrorToast(_text_) YPToast(_text_).error().show();
-#define YPInfoToast(_text_) YPToast(_text_).info().show();
+YPToastView * YPTextToast(NSString *text);
+YPToastView * YPSuccessToast(NSString *text);
+YPToastView * YPErrorToast(NSString *text);
+YPToastView * YPInfoToast(NSString *text);
 
 // 基础调用方法，使用此方法，在需要调用.show()或者.showInView(view)方法
-#define YPToast(_text_) [[YPToastView alloc] initWithText:_text_]
+YPToastView * YPToast(NSString *text);
 
 @interface YPToastView : UIView
 
@@ -35,7 +37,12 @@
 @property (nonatomic) CGFloat hideAfterDelay UI_APPEARANCE_SELECTOR;
 @property (nonatomic) UIEdgeInsets insets UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat textImageSpace UI_APPEARANCE_SELECTOR;
+@property (nonatomic) CGFloat minWidth UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat maxWidth UI_APPEARANCE_SELECTOR;
+@property (nonatomic) CGFloat minHeight UI_APPEARANCE_SELECTOR;
+@property (nonatomic) CGFloat maxHeight UI_APPEARANCE_SELECTOR;
+@property (nonatomic) CGFloat cornerRadius UI_APPEARANCE_SELECTOR;
+@property (nonatomic) CGFloat animateDuration UI_APPEARANCE_SELECTOR;
 
 - (instancetype)initWithText:(NSString *)text;
 
@@ -45,7 +52,7 @@
 @end
 
 /*
- * 此分类主要定义Toast的快捷调用方法
+ * 此分类主要定义Toast的参数设置方法
  */
 @interface YPToastView (Interface)
 

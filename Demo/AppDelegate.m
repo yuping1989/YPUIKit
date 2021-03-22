@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "YPToastView.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     NSLog(@"didFinishLaunchingWithOptions");
+    [YPToastView appearance].minWidth = 100;
+    [YPToastView appearance].minHeight = 100;
     return YES;
 }
 
