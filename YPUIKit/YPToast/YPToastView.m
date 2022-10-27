@@ -209,7 +209,21 @@ YPToastView * YPToast(NSString *text) {
 }
 
 + (UIWindow *)lastWindow {
-    for (UIWindow *window in [UIApplication sharedApplication].windows.reverseObjectEnumerator) {
+    NSArray *windows;
+    if (@available(iOS 15, *)) {
+       __block UIScene * _Nonnull tmpSc;
+        [[[UIApplication sharedApplication] connectedScenes] enumerateObjectsUsingBlock:^(UIScene * _Nonnull obj, BOOL * _Nonnull stop) {
+            if (obj.activationState == UISceneActivationStateForegroundActive) {
+                tmpSc = obj;
+                *stop = YES;
+            }
+        }];
+        windows = [(UIWindowScene *)tmpSc windows];
+    } else {
+        windows = [UIApplication sharedApplication].windows;
+    }
+    
+    for (UIWindow *window in windows.reverseObjectEnumerator) {
         if ([window isKindOfClass:[UIWindow class]] &&
             CGRectEqualToRect(window.bounds, [UIScreen mainScreen].bounds)) {
             return window;
