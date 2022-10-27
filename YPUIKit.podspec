@@ -1,7 +1,7 @@
 #YPUIKit.podspec
 Pod::Spec.new do |s|
 	s.name         = "YPUIKit"
-	s.version      = "1.2.7"
+	s.version      = "1.2.8"
 	s.summary      = "A collection of categories that contains many commonly used methods."
 
 	s.homepage     = "https://github.com/yuping1989/YPUIKit"

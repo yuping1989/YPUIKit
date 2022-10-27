@@ -7,7 +7,7 @@
 //
 
 #import "YPToastView.h"
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 
 #pragma mark - 快捷方法
 YPToastView * YPTextToast(NSString *text) {
